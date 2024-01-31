@@ -9,19 +9,57 @@ const REFLECTION_VERTEX_SHADER: &str = include_str!("./reflection_vertex.glsl");
 
 const VERTEX_SHADER: &str = include_str!("./vertex.glsl");
 
-#[allow(clippy::cast_possible_truncation)]
 pub fn window_conf() -> Conf {
     Conf {
         window_title: "Shader".to_owned(),
         fullscreen: false,
         window_height: 600,
         window_width: 800,
-        window_resizable: false,
+        window_resizable: true,
         icon: None, // TODO : Update this later
         high_dpi: true,
         ..Default::default()
     }
 }
+
+// #[macroquad::main(window_conf)]
+// Normalize for drawing
+// async fn main() {
+//     let texture = load_texture("./unknownrori.png").await.unwrap();
+//     loop {
+//         clear_background(WHITE);
+//
+//         let screen = vec2(screen_width(), screen_height());
+//
+//         let normalize_size = vec2(200f32 / screen.x, 200f32 / screen.y);
+//         let normalize_aspect = normalize_size.x / normalize_size.y;
+//         let size = vec2(0.1, 0.1 / normalize_aspect);
+//         draw_rectangle(
+//             (vec2(0.5, 0.5) * screen).x,
+//             (vec2(0.5, 0.5) * screen).y,
+//             (size * screen).x,
+//             (size * screen).y,
+//             RED,
+//         );
+//
+//         let normalized_texture_size =
+//             vec2(texture.size().x / screen.x, texture.size().y / screen.y);
+//         let normalized_aspect = normalized_texture_size.x / normalized_texture_size.y;
+//         let size = vec2(0.1, 0.1 / normalized_aspect);
+//         draw_texture_ex(
+//             &texture,
+//             (vec2(0.1, 0.1) * screen).x,
+//             (vec2(0.1, 0.1) * screen).y,
+//             WHITE,
+//             DrawTextureParams {
+//                 dest_size: Some(size * screen),
+//                 ..Default::default()
+//             },
+//         );
+//
+//         next_frame().await
+//     }
+// }
 
 #[macroquad::main(window_conf)]
 async fn main() {
